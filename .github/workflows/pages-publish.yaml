@@ -1,0 +1,21 @@
+on:
+  push:
+    branches: [master]
+
+permission:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    envarionment:
+      name: github-pages
+    steps:
+      - uses: action/checkout@v4
+      - uses: action/upload-pages-artifact@v3
+        with:
+          path: .
+      - uses: action/deploy-pages@v4
+
